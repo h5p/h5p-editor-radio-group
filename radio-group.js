@@ -66,7 +66,7 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
         id: inputId,
         checked: (self.params === option.value) || (self.params === undefined && this.field.default === option.value),
         change: function () {
-          self.params = $('input[name=' + self.field.name + ']:checked', $buttonGroup).val();
+          self.params = $('input:checked', $buttonGroup).val();
           self.setValue(self.field, self.params);
         }
       }).appendTo($button);
