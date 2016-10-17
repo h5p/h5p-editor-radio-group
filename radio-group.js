@@ -5,7 +5,6 @@
  */
 H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
 
-  var optionCounter = 0;
   var groupCounter = 0;
   /**
    * Creates an radio button group.
@@ -52,7 +51,7 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
 
     for (var i=0, numOptions = self.field.options.length; i < numOptions; i++) {
       var option = self.field.options[i];
-      var inputId = 'h5p-editor-radio-group-button-' + (optionCounter++);
+      var inputId = 'h5p-editor-radio-group-button-' + groupCounter + '-' + i;
 
       var $button = $('<div>', {
         'class': 'h5p-editor-radio-group-button ' + option.value
