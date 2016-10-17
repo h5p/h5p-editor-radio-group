@@ -1,7 +1,31 @@
 H5P Editor Radio Group
 ==========
 
-Create a radio group instead of a select
+This editor widget creates a radio group instead of a dropdown for the 'select' type.
+
+The following example is from True/False Question's semantics.json:
+```javascript
+{
+  "name": "correct",
+  "type": "select",
+  "widget": "radioGroup",
+  "alignment": "horizontal",
+  "label": "Correct answer",
+  "options": [
+    {
+      "value": "true",
+      "label": "True"
+    },
+    {
+      "value": "false",
+      "label": "False"
+    }
+  ],
+  "default": "true"
+},
+```
+The example above will create two radio buttons with label 'True' and 'False', which
+will be aligned horizontally.
 
 ## License
 
