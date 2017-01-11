@@ -34,22 +34,14 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
   RadioGroup.prototype.appendTo = function ($wrapper) {
     var self = this;
 
-    self.$container = $('<div>', {
-      'class': 'field text h5p-editor-radio-group'
-    });
+    self.$container = $(H5PEditor.createFieldMarkup(
+        self.field,
+        '<div class="h5p-editor-radio-group-container ' + self.alignment + '" role="radiogroup"></div>'
+    ));
 
-    // Add header:
-    $('<div>', {
-      'class': 'h5peditor-label',
-      html: self.field.label
-    }).appendTo(self.$container);
+    var $buttonGroup = self.$container.find('.h5p-editor-radio-group-container');
 
-    var $buttonGroup = $('<div>', {
-      'class': 'h5p-editor-radio-group-container ' + this.alignment,
-      role: 'radiogroup'
-    }).appendTo(self.$container);
-
-    for (var i=0, numOptions = self.field.options.length; i < numOptions; i++) {
+    for (var i = 0; i < self.field.options.length; i++) {
       var option = self.field.options[i];
       var inputId = 'h5p-editor-radio-group-button-' + groupCounter + '-' + i;
 
@@ -83,12 +75,6 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
         }).appendTo($button);
       }
     }
-
-    // Add description:
-    $('<div>', {
-      'class': 'h5peditor-field-description',
-      html: self.field.description
-    }).appendTo(self.$container);
 
     self.$container.appendTo($wrapper);
   };
