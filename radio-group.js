@@ -18,10 +18,19 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
   function RadioGroup(parent, field, params, setValue) {
     this.parent = parent;
     this.field = field;
-    this.params = params;
+    this.value = params;
     this.setValue = setValue;
 
     this.alignment = this.field.alignment || 'vertical';
+
+    // Setup event dispatching on change
+    this.changes = [];
+    this.triggerListeners = function () {
+      // Run callbacks
+      for (var i = 0; i < this.changes.length; i++) {
+        this.changes[i](this.value);
+      }
+    };
 
     groupCounter++;
   }
@@ -54,8 +63,8 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
     for (var i = 0; i < self.field.options.length; i++) {
       var option = self.field.options[i];
       var inputId = 'h5p-editor-radio-group-button-' + groupCounter + '-' + i;
-      var isChecked = (self.params === option.value) ||
-        (self.params === undefined && this.field.default === option.value);
+      var isChecked = (self.value === option.value) ||
+        (self.value === undefined && this.field.default === option.value);
 
       var $button = $('<div>', {
         'class': 'h5p-editor-radio-group-button ' + option.value + (isChecked ? ' checked' : '')
@@ -71,8 +80,9 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
         checked: isChecked,
         change: function () {
           toggleSelected($(this));
-          self.params = $('input:checked', $buttonGroup).val();
-          self.setValue(self.field, self.params);
+          self.value = $('input:checked', $buttonGroup).val();
+          self.setValue(self.field, self.value);
+          self.triggerListeners();
         }
       }).appendTo($button);
 
