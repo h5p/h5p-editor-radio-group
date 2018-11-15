@@ -54,8 +54,8 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
     };
 
     self.$container = $(H5PEditor.createFieldMarkup(
-        self.field,
-        '<div class="h5p-editor-radio-group-container ' + self.alignment + '" role="radiogroup"></div>'
+      self.field,
+      '<div class="h5p-editor-radio-group-container ' + self.alignment + '" role="radiogroup"></div>'
     ));
 
     var $buttonGroup = self.$container.find('.h5p-editor-radio-group-container');
