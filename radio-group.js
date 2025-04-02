@@ -77,6 +77,7 @@ H5PEditor.RadioGroup = H5PEditor.widgets.radioGroup = (function ($) {
         value: option.value,
         role: 'radio',
         id: inputId,
+        'aria-label': `${self.field.label} ${option.label}`,
         checked: isChecked,
         change: function () {
           toggleSelected($(this));
